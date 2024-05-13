@@ -1,0 +1,4 @@
+backend/env
+backend/apis/__pycache__
+backend/apis/migrations
+backend/backend/__pycache__
