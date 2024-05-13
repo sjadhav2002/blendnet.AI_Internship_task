@@ -1,0 +1,63 @@
+.navbar {
+    width: 100%;
+    position: sticky;
+    background-color: black;
+    min-height: 10vh;
+    padding: 0px !important;
+  }
+
+.nav-link{
+  color: var(--Light-grey) !important;
+  font-weight: bolder;
+  font-size: 20px;
+  padding-left: 3vw !important;
+  padding-right: 3vw !important;
+  transition: color 0.5s;
+}
+
+.mob{
+  width: fit-content;
+  padding: 0px 10px !important;
+}
+.ext_links{
+    display: flex;
+    flex-direction:row-reverse !important;
+    width: fit-content !important;
+    position: absolute;
+    right: 40px;
+}
+.navbar-light .navbar-toggler{
+    background-color: var(--Light-grey);
+}
+@media only screen and (max-width: 767px) {
+  .mob{
+    width: 100%;
+  }
+  .ext_links{
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    right: 0px;
+    
+}
+}
+
+.nav-link:hover{
+    color: var(--Dark-grey) !important;
+}
+
+.navbar-brand img{
+    width: 93px;
+    height: 40px;
+}
+
+.navbar-nav{
+  width: 100% !important;
+}
+
+.navbar-toggler-icon {
+  background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
