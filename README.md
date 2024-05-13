@@ -1,0 +1,1 @@
+# blendnet.AI_Internship_task
