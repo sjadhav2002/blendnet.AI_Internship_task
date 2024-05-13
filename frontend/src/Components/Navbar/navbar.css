@@ -7,7 +7,7 @@
   }
 
 .nav-link{
-  color: var(--Light-grey) !important;
+  color: var(--Light-green) !important;
   font-weight: bolder;
   font-size: 20px;
   padding-left: 3vw !important;
@@ -46,7 +46,7 @@
 }
 
 .nav-link:hover{
-    color: var(--Dark-grey) !important;
+    color: var(--Dark-green) !important;
 }
 
 .navbar-brand img{

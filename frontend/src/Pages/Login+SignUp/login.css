@@ -1,0 +1,23 @@
+.login_container{
+    display: flex;
+    width: 30vw;
+    margin: 100px auto;
+    padding: 50px;
+    background-color: var(--Light-grey);
+    border-radius: 20px;
+}
+
+.form-label{
+    color: black;
+}
+
+.submit_btn{
+    width: 100%;
+    background-color: var(--Dark-green);
+}
+
+.submit_btn:hover{
+    background-color: var(--Light-green);
+    color: black;
+    font-weight: 600;
+}

@@ -3,14 +3,23 @@ import { Navbar, Nav} from 'react-bootstrap';
 import { Link } from 'react-router-dom'; // Make sure you have react-router-dom installed
 import "./navbar.css"
 
-const NavigationBar = ({signin}) => {
+interface NavigationBarProps {
+  signin: boolean;
+}
+
+const NavigationBar: React.FC<NavigationBarProps> = ({ signin }) => {
   
   return (
     <Navbar expand="lg">
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className='page-links' >
-            <Nav.Link as={Link} to="/">Home</Nav.Link>
+            {signin &&(
+              <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
+            )}
+            {!signin &&(
+              <Nav.Link as={Link} to="/">Home</Nav.Link>
+            )}
           </Nav>
           <div className='ext_links' style={{ display: signin ? 'flex' : 'none' }}>
             <Nav.Link className='mob' as={Link} to="/account"><img src="assets/user.svg" alt="" style={{width:'40px'}}/></Nav.Link>

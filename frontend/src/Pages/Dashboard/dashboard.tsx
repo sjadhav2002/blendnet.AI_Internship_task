@@ -1,15 +1,15 @@
 import React from 'react'
-import "./home.css"
+import "./dashboard.css"
 // import { useState, useEffect, useRef } from 'react';
 import BasePage from '../../Components/Base_Page/base';
 
-const Home = () => {
+const Dashboard: React.FC = () => {
     const maincontent = (
         <div>
         
         </div>
     )
-    return <BasePage maincontent={maincontent} />;
+    return <BasePage maincontent={maincontent} signin={true} />;
 }
 
-export default Home
+export default Dashboard;

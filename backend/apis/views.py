@@ -36,16 +36,12 @@ def signup(request):
         data = json.loads(request.body)
         username = data.get('username')
         password = data.get('password')
-        first_name = data.get('firstname')
-        last_name = data.get('lastname')
+        first_name = data.get('firstName')
+        last_name = data.get('lastName')
         email = data.get('email')
         if not (username and password and first_name and last_name):  # Ensure all fields are provided
             return JsonResponse({'error': 'All fields are required.'}, status=400)
         #username/password checking
-        
-        if User.objects.filter(username=username).exists():
-            return JsonResponse({'status': 'Username already Exists'}, status=400)
-        
         try:
             user = User.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name, email = email)
             return JsonResponse({'status': 'success'}, status=201)
@@ -54,3 +50,9 @@ def signup(request):
         
     return JsonResponse({'status': 'success'}, status=201)
 
+@csrf_exempt
+def check_username(request, username):
+    if User.objects.filter(username=username).exists():
+            return JsonResponse({'available': False}, status=200)
+    else:
+        return JsonResponse({'available': True}, status=200)
