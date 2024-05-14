@@ -3,6 +3,8 @@ import "./login.css"
 import BasePage from '../../Components/Base_Page/base';
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { Container, Typography, TextField, Button } from '@mui/material';
+import { redirect } from "react-router-dom";
+
 
 const Login: React.FC = () => {
     const [username, setUsername] = useState<string>('');
@@ -25,7 +27,8 @@ const Login: React.FC = () => {
           password: password
         };
       
-        fetch('http://127.0.0.1:8000/signin/', {
+        fetch('http://127.0.0.1:8000/auth/signin/', {
+          credentials: 'include',
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -39,19 +42,14 @@ const Login: React.FC = () => {
           return response.json();
         })
         .then(data => {
-          console.log('Success:', data);
-          window.location.href = "/dashboard"
+          const access_token = data["access"];
+          const refresh_token = data["refresh"];
+          window.sessionStorage.setItem("access", access_token)
+          window.sessionStorage.setItem("refresh", refresh_token)
+          
+          window.location.href = '/dashboard';
           // Add redirection or further logic here
         })
-        .catch(error => {
-          console.error('Error:', error);
-          setFailed(true);
-          // Handle error
-        });
-      
-        // Reset fields after submission
-        setUsername('');
-        setPassword('');
       };
 
 

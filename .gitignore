@@ -2,3 +2,7 @@ backend/env
 backend/apis/__pycache__
 backend/apis/migrations
 backend/backend/__pycache__
+backend/authentication/__pycache__
+backend/user_api/__pycache__
+backend/user_api/migrations
+backend/authentication/migrations

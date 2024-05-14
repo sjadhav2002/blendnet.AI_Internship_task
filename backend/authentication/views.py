@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.http import JsonResponse
-import json
+import json , requests
 from django.contrib.auth import authenticate, login, logout
 
 @csrf_exempt
@@ -16,7 +16,24 @@ def signin(request):
 
         if user is not None:
             login(request, user)
-            return JsonResponse({'message': 'Login successful'})
+            url = "http://127.0.0.1:8000/api/token/"
+            headers = {
+                "X-CSRFToken": get_token(request),
+                "Content-Type": "application/json"
+            }
+
+            # Define the JSON body
+            data = {
+                "username": username,
+                "password": password
+            }
+
+            # Make the POST request
+            response = requests.post(url, headers=headers, json=data)
+            tokens = response.json()
+            accesstoken = tokens["access"]
+            refreshtoken = tokens["refresh"]
+            return JsonResponse({'message': 'Login successful',"access":accesstoken,"refresh":refreshtoken})
         else:
             return JsonResponse({'error': 'Invalid credentials'}, status=400)
 
@@ -56,3 +73,10 @@ def check_username(request, username):
             return JsonResponse({'available': False}, status=200)
     else:
         return JsonResponse({'available': True}, status=200)
+    
+
+from django.middleware.csrf import get_token
+def get_csrf_token(request):
+    token = get_token(request)
+    return JsonResponse({'csrfToken': token})
+    

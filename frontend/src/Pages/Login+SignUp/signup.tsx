@@ -55,7 +55,7 @@ function Signup() {
 
   const handleCheckAvailability = () => {
     // Perform GET request to check username availability
-    fetch(`http://127.0.0.1:8000/check_username/${username}/`)
+    fetch(`http://127.0.0.1:8000/auth/check_username/${username}/`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -105,7 +105,7 @@ function Signup() {
     };
     console.log(data);
 
-    fetch("http://127.0.0.1:8000/signup/", {
+    fetch("http://127.0.0.1:8000/auth/signup/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
