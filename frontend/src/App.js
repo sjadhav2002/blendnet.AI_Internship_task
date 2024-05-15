@@ -1,5 +1,4 @@
 import './App.css';
-
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Home from './Pages/Home/home';
 import SignUp from './Pages/Login+SignUp/signup';

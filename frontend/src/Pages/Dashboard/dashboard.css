@@ -1,0 +1,36 @@
+.side_nav{
+    background-color:var(--Dark-green);
+    border-top:2px solid black;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+.card_watchlist{
+    padding: 10px !important;
+}
+
+.transition-container {
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    max-height: 0;
+  }
+  
+  .show {
+    max-height: 1000px; /* Adjust this value based on your content height */
+  }
+  
+  .hide {
+    max-height: 0;
+  }
+.white{
+  color:white;
+}
+
+/* .perf_card_container{
+  position: relative !important;
+}
+
+.perf_card{
+  position: absolute !important;
+  bottom: 0 !important;
+} */

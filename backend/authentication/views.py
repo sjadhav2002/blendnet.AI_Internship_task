@@ -43,7 +43,8 @@ def signout(request):
     try:
         logout(request)
         return JsonResponse({'message': 'Logout successful'})
-    except:
+    except Exception as e:
+        print(e)
         return JsonResponse({'message': 'Logout Failed'})        
     
 

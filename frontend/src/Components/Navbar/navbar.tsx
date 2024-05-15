@@ -1,8 +1,8 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom'; // Make sure you have react-router-dom installed
 import "./navbar.css"
-import { AppBar, Toolbar, Typography, Button, IconButton } from '@mui/material';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { AppBar, Toolbar, Typography, Button } from '@mui/material';
+
 
 interface NavigationBarProps {
   signin: boolean;

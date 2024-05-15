@@ -3,7 +3,6 @@ import "./login.css"
 import BasePage from '../../Components/Base_Page/base';
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { Container, Typography, TextField, Button } from '@mui/material';
-import { redirect } from "react-router-dom";
 
 
 const Login: React.FC = () => {
@@ -49,7 +48,10 @@ const Login: React.FC = () => {
           
           window.location.href = '/dashboard';
           // Add redirection or further logic here
-        })
+        }).catch(error => {
+          console.error('Error:', error);
+          setFailed(true);
+        });
       };
 
 
