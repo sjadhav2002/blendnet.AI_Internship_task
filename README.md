@@ -1,7 +1,6 @@
 # blendnet.AI_Internship_task
 
 # Setup 
-
 1. Clone repository using- https://github.com/sjadhav2002/blendnet.AI_Internship_task.git
 
 # Setup Backend
@@ -33,3 +32,6 @@
     - npm install
 5. run
     - npm start
+
+
+# Documentation about both Backend and Frontend is given in Documentation.pdf
