@@ -19,9 +19,11 @@
     - USER - username
     - PASSWORD - password
     - HOST - DB Host
-    - PORT - DB Port
-7. open user_api\views.py and update the value of API_KEY global variable with your API key(or keep same My key has limit of 25 requests per day)
+    - PORT - DB Port   
+7. open user_api\views.py file and update the value of API_KEY global variable with your API key(or keep same My key has limit of 25 requests per day)
 8. run command
+    - python manage.py makemigrations
+    - python manage.py migrate
     - python manage.py runserver
 
 # setup FrontEnd

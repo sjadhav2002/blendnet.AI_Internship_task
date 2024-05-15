@@ -271,11 +271,8 @@ def checkuser(request):
 
 
 
-
-
-
-
 def get_companies():
+                                                            #Code to get companies list and add to DB from alphavantage
     # global API_KEY
     # endpoint = 'https://www.alphavantage.co/query'
     # params = {
@@ -300,7 +297,10 @@ def get_companies():
     #             ipoDate = datetime.strptime(fields[4], '%Y-%m-%d') if fields[4] != 'null' else None
     #         except:
     #             continue
-
+    
+    
+    
+                                                            #code to add predefined Companies
     global companies
     for company in companies:
             if not Company.objects.filter(symbol=company['symbol']).exists():
@@ -325,75 +325,81 @@ def update_status():
         response = requests.get(endpoint)
         data = response.json()
         time_data = data.get("Time Series (5min)")
-        if time_data ==None:
+        if time_data == None:
             # continue
             endpoint =f"https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={company['symbol']}&interval=5min&apikey={API_KEY[1]}"
             response = requests.get(endpoint)
             data = response.json()
             time_data = data.get("Time Series (5min)")
         data_rows = []
-        for data in time_data:
-            time = pd.Timestamp(data)
-            open_price = float(time_data[data]["1. open"])
-            high_price = float(time_data[data]["2. high"])
-            low_price = float(time_data[data]["3. low"])
-            close_price = float(time_data[data]["4. close"])
-            volume = int(time_data[data]["5. volume"])
-            
-            # Create a dictionary for the row
-            row = {
-                "time": time,
-                "open": open_price,
-                "high": high_price,
-                "low": low_price,
-                "close": close_price,
-                "volume": volume
-            }
-            
-            # Append the row dictionary to the list
-            data_rows.append(row)
+        try:
+            for data in time_data:
+                time = pd.Timestamp(data)
+                open_price = float(time_data[data]["1. open"])
+                high_price = float(time_data[data]["2. high"])
+                low_price = float(time_data[data]["3. low"])
+                close_price = float(time_data[data]["4. close"])
+                volume = int(time_data[data]["5. volume"])
+                
+                # Create a dictionary for the row
+                row = {
+                    "time": time,
+                    "open": open_price,
+                    "high": high_price,
+                    "low": low_price,
+                    "close": close_price,
+                    "volume": volume
+                }
+                
+                # Append the row dictionary to the list
+                data_rows.append(row)
 
-        # Create DataFrame from the list of dictionaries
-        df = pd.DataFrame(data_rows)
-        df['time'] = pd.to_datetime(df['time'])
-        max_date = df['time'].max()
-        start_date = max_date - pd.Timedelta(days=10)
-        
-        df_today = df[df['time'].dt.date == max_date.date()].sort_values(by='time', ascending=False)
-        df_10day = df[(df['time'] >= start_date) & (df['time'] <= max_date)].sort_values(by='time', ascending=False)
-        
-        high_today = df_today['high'].max()
-        low_today = df_today['low'].min()
-        
-        start_today = df_today['time'].min()
-        end_today = df_today['time'].max()
-        perf_today = df_today[df_today['time'] == start_today]['open'].iloc[0] - df_today[df_today['time'] == end_today]['close'].iloc[0]
-        
-        
-        high_10day = df_today['high'].max()
-        low_10day = df_today['low'].min()
-        
-        start_10day = df_today['time'].min()
-        end_10day = df_today['time'].max()
-        perf_10day = df_10day[df_10day['time'] == start_10day]['open'].iloc[0] - df_10day[df_10day['time'] == end_10day]['close'].iloc[0]
-        
-        high_30day = df_today['high'].max()
-        low_30day = df_today['low'].min()
-        
-        start_30day = df['time'].min()
-        end_30day = df['time'].max()
-        perf_30day = df[df['time'] == start_30day]['open'].iloc[0] - df[df['time'] == end_30day]['close'].iloc[0]
-        
-        company = Company.objects.get(symbol = company['symbol'])
-        company.low_today = low_today
-        company.low_10day = low_10day
-        company.low_30day = low_30day
-        company.high_today = high_today
-        company.high_10day = high_10day
-        company.high_30day = high_30day
-        company.perf_today = perf_today
-        company.perf_10day = perf_10day
-        company.perf_30day = perf_30day
-        company.save()
+                # Create DataFrame from the list of dictionaries
+            df = pd.DataFrame(data_rows)
+            df['time'] = pd.to_datetime(df['time'])
+            max_date = df['time'].max()
+            start_date = max_date - pd.Timedelta(days=10)
+            
+            df_today = df[df['time'].dt.date == max_date.date()].sort_values(by='time', ascending=False)
+            df_10day = df[(df['time'] >= start_date) & (df['time'] <= max_date)].sort_values(by='time', ascending=False)
+            
+            high_today = df_today['high'].max()
+            low_today = df_today['low'].min()
+            
+            start_today = df_today['time'].min()
+            end_today = df_today['time'].max()
+            perf_today = df_today[df_today['time'] == start_today]['open'].iloc[0] - df_today[df_today['time'] == end_today]['close'].iloc[0]
+            
+            
+            high_10day = df_today['high'].max()
+            low_10day = df_today['low'].min()
+            
+            start_10day = df_today['time'].min()
+            end_10day = df_today['time'].max()
+            perf_10day = df_10day[df_10day['time'] == start_10day]['open'].iloc[0] - df_10day[df_10day['time'] == end_10day]['close'].iloc[0]
+            
+            high_30day = df_today['high'].max()
+            low_30day = df_today['low'].min()
+            
+            start_30day = df['time'].min()
+            end_30day = df['time'].max()
+            perf_30day = df[df['time'] == start_30day]['open'].iloc[0] - df[df['time'] == end_30day]['close'].iloc[0]
+            
+            company = Company.objects.get(symbol = company['symbol'])
+            company.low_today = low_today
+            company.low_10day = low_10day
+            company.low_30day = low_30day
+            company.high_today = high_today
+            company.high_10day = high_10day
+            company.high_30day = high_30day
+            company.perf_today = perf_today
+            company.perf_10day = perf_10day
+            company.perf_30day = perf_30day
+            company.save()
+        except:
+            pass
    
-# get_companies()
+   
+#run getcompanies to add companies initially in DB
+#needs to be scheduled to run everyday after market closes to update data
+get_companies()
