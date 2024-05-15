@@ -127,10 +127,6 @@ const Dashboard: React.FC = () => {
         getWatchlistPerf(id)
     };
 
-    const update_graphs = (symbol: string) => {
-        console.log(symbol);
-    };
-
     const displayCheckboxes = () => {
         setEditClicked((prevId) => (prevId === true ? false : true));
     };
@@ -468,7 +464,7 @@ const Dashboard: React.FC = () => {
                                                 component="div"
                                             >
                                                 <Button
-                                                    onClick={() => update_graphs(item1["symbol"])}
+                                                    onClick={() => setSelectedCompany(item1["symbol"])}
                                                     style={{ color: "white" }}
                                                 >
                                                     {item1["name"]}
