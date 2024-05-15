@@ -22,12 +22,12 @@
     - PORT - DB Port   
 7. open user_api\views.py file
     - update the value of API_KEY global variable with your API key(or keep same My key has limit of 25 requests per day)
-    - Comment out the last line calling get_companies()
 
 8. run command
     - python manage.py makemigrations
     - python manage.py migrate
-9. Remove the comment from get_companies() and run 
+9. Remove the comment from get_companies() in user_api\views.py file last line
+10. run command
     - python manage.py runserver
 
 

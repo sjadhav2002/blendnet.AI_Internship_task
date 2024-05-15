@@ -23,18 +23,18 @@ companies = [
     "exchange": "NASDAQ",
     "assetType":"Stock"
     },
-    {
-    "symbol" :'GOOG',
-    "name":"Alphabet Inc - Class C",
-    "exchange": "NASDAQ",
-    "assetType":"Stock"
-    },
-    {
-    "symbol" :'GPIQ',
-    "name":"GOLDMAN SACHS NASDAQ-100 CORE PREMIUM INCOME ETF",
-    "exchange": "NASDAQ",
-    "assetType":"ETF"
-    }
+    # {                                                 Not Available using Demo Key of alpha vantage
+    # "symbol" :'GOOG',
+    # "name":"Alphabet Inc - Class C",
+    # "exchange": "NASDAQ",
+    # "assetType":"Stock"
+    # },
+    # {
+    # "symbol" :'GPIQ',
+    # "name":"GOLDMAN SACHS NASDAQ-100 CORE PREMIUM INCOME ETF",
+    # "exchange": "NASDAQ",
+    # "assetType":"ETF"
+    # }
 ]
 
 @login_required
