@@ -20,11 +20,16 @@
     - PASSWORD - password
     - HOST - DB Host
     - PORT - DB Port   
-7. open user_api\views.py file and update the value of API_KEY global variable with your API key(or keep same My key has limit of 25 requests per day)
+7. open user_api\views.py file
+    - update the value of API_KEY global variable with your API key(or keep same My key has limit of 25 requests per day)
+    - Comment out the last line calling get_companies()
+
 8. run command
     - python manage.py makemigrations
     - python manage.py migrate
+9. Remove the comment from get_companies() and run 
     - python manage.py runserver
+
 
 # setup FrontEnd
 1. Open a terminal.

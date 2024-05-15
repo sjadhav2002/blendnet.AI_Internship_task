@@ -77,30 +77,48 @@ def dashboard(request):
         for watchlist_item in watchlist_companies:
             for item in watchlist_companies[watchlist_item]:
                 default_companies.append(item)
+        flag_fail = 0
+        try: 
+            max_perf_today = max(default_companies, key=lambda x: x['perf_today'])
+            min_perf_today = min(default_companies, key=lambda x: x['perf_today'])
+            max_perf_10day = max(default_companies, key=lambda x: x['perf_10day'])
+            min_perf_10day = min(default_companies, key=lambda x: x['perf_10day'])
+            max_perf_30day = max(default_companies, key=lambda x: x['perf_30day'])
+            min_perf_30day = min(default_companies, key=lambda x: x['perf_30day'])
         
-        max_perf_today = max(default_companies, key=lambda x: x['perf_today'])
-        min_perf_today = min(default_companies, key=lambda x: x['perf_today'])
-        max_perf_10day = max(default_companies, key=lambda x: x['perf_10day'])
-        min_perf_10day = min(default_companies, key=lambda x: x['perf_10day'])
-        max_perf_30day = max(default_companies, key=lambda x: x['perf_30day'])
-        min_perf_30day = min(default_companies, key=lambda x: x['perf_30day'])
+        except:
+            max_perf_today = {}
+            min_perf_today = {}
+            max_perf_10day = {}
+            min_perf_10day = {}
+            max_perf_30day = {}
+            min_perf_30day = {}
+            flag_fail = 1
         
-        perf_metrics = {
-        'max_perf_today':max_perf_today,
-        'min_perf_today':min_perf_today,
-        'max_perf_10day':max_perf_10day,
-        'min_perf_10day':min_perf_10day,
-        'max_perf_30day':max_perf_30day,
-        'min_perf_30day':min_perf_30day
-    }
-        data = {
-        'user' : user.username,
-        'watchlists' : user_watchlists,
-        'watchlist_companies':watchlist_companies,
-        'allCompanies': companies,
-        'perf_metrics': perf_metrics
+        if flag_fail ==0:
+            perf_metrics = {
+            'max_perf_today':max_perf_today,
+            'min_perf_today':min_perf_today,
+            'max_perf_10day':max_perf_10day,
+            'min_perf_10day':min_perf_10day,
+            'max_perf_30day':max_perf_30day,
+            'min_perf_30day':min_perf_30day
+            }
         
-    }
+            data = {
+            'user' : user.username,
+            'watchlists' : user_watchlists,
+            'watchlist_companies':watchlist_companies,
+            'allCompanies': companies,
+            'perf_metrics': perf_metrics
+            }
+        else:
+            data = {
+                    'user' : user.username,
+                    'watchlists' : user_watchlists,
+                    'watchlist_companies':watchlist_companies,
+                    'allCompanies': companies,
+                    }
     except Exception as e:
         print(e)
         watchlist_companies ={}
@@ -402,4 +420,4 @@ def update_status():
    
 #run getcompanies to add companies initially in DB
 #needs to be scheduled to run everyday after market closes to update data
-get_companies()
+# get_companies()
