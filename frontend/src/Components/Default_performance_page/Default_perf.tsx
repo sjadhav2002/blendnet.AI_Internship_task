@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, CardContent, Grid, Typography } from '@mui/material';
 
-interface company_details{
+interface company_details {
     watchlist: string;
     name: string;
     symbol: string;
@@ -28,141 +28,141 @@ interface DefaultPerfProps {
     perfMetrics: PerfMetrics | null;
 }
 
-const Default_perf: React.FC<DefaultPerfProps> = ({perfMetrics}) => {
+const Default_perf: React.FC<DefaultPerfProps> = ({ perfMetrics }) => {
     const maincontent: React.ReactNode = (
-        <Grid container spacing={2} style={{textAlign:'center'}}>
-                        {/* First Column */}                            
-                        <Grid item md={4} xs={12}>
-                        <Grid>
-                            <Grid>
-                                <Typography className="white" variant="h6" component="div">
-                                            Overall Watchlist Performers <br/>Today
-                                </Typography>
-                            </Grid>
-                            <Grid container spacing={2}>
-                                <Grid item xs={6} className="perf_card_container">
-                                    
-                                    <Card className="perf_card">
-                                    <CardContent>
-                                        <Typography variant="h6" component="div">
+        <Grid container spacing={2} style={{ textAlign: 'center' }}>
+            {/* First Column */}
+            <Grid item md={4} xs={12}>
+                <Grid>
+                    <Grid>
+                        <Typography className="white" variant="h6" component="div">
+                            Overall Watchlist Performers <br />Today
+                        </Typography>
+                    </Grid>
+                    <Grid container spacing={2}>
+                        <Grid item xs={6} className="perf_card_container">
+
+                            <Card className="perf_card">
+                                <CardContent>
+                                    <Typography variant="h6" component="div">
                                         Best Performer
-                                        </Typography>
-                                        <Typography variant="body2">
+                                    </Typography>
+                                    <Typography variant="body2">
                                         {perfMetrics?.max_perf_today?.name}
-                                        </Typography>
-                                        <Typography variant="body2" style={perfMetrics?.max_perf_today?.perf_today && perfMetrics?.max_perf_today?.perf_today >=0?{color:'green'}:{ color:'red'}}>
+                                    </Typography>
+                                    <Typography variant="body2" style={perfMetrics?.max_perf_today?.perf_today && perfMetrics?.max_perf_today?.perf_today >= 0 ? { color: 'green' } : { color: 'red' }}>
                                         {perfMetrics?.max_perf_today?.perf_today.toFixed(4)}
-                                        </Typography>
-                                    </CardContent>
-                                    </Card>
-                                </Grid>
-                                <Grid item xs={6} className="perf_card_container">
-                                    <Card className="perf_card" >
-                                    <CardContent>
-                                        <Typography variant="h6" component="div">
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={6} className="perf_card_container">
+                            <Card className="perf_card" >
+                                <CardContent>
+                                    <Typography variant="h6" component="div">
                                         Worst Performer
-                                        </Typography>
-                                        <Typography variant="body2">
+                                    </Typography>
+                                    <Typography variant="body2">
                                         {perfMetrics?.min_perf_today?.name}
-                                        </Typography>
-                                        <Typography variant="body2" style={perfMetrics?.min_perf_today?.perf_today && perfMetrics?.min_perf_today?.perf_today >=0?{color:'green'}:{ color:'red'}}>
+                                    </Typography>
+                                    <Typography variant="body2" style={perfMetrics?.min_perf_today?.perf_today && perfMetrics?.min_perf_today?.perf_today >= 0 ? { color: 'green' } : { color: 'red' }}>
                                         {perfMetrics?.min_perf_today?.perf_today.toFixed(4)}
-                                        </Typography>
-                                    </CardContent>
-                                    </Card>
-                                </Grid>
-                            </Grid>
+                                    </Typography>
+                                </CardContent>
+                            </Card>
                         </Grid>
-                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
 
-                        {/* Second Column */}
-                        <Grid item md={4} xs={12}>
-                        <Grid>
-                            <Grid>
-                            <Typography className="white" variant="h6" component="div">
-                            Overall Watchlist Performers <br/>10 days
-                                </Typography>
-                            </Grid>
-                            <Grid container spacing={2}>
-                                <Grid item xs={6} className="perf_card_container">
-                                    
-                                    <Card className="perf_card">
-                                    <CardContent>
-                                        <Typography variant="h6" component="div">
+            {/* Second Column */}
+            <Grid item md={4} xs={12}>
+                <Grid>
+                    <Grid>
+                        <Typography className="white" variant="h6" component="div">
+                            Overall Watchlist Performers <br />10 days
+                        </Typography>
+                    </Grid>
+                    <Grid container spacing={2}>
+                        <Grid item xs={6} className="perf_card_container">
+
+                            <Card className="perf_card">
+                                <CardContent>
+                                    <Typography variant="h6" component="div">
                                         Best Performer
-                                        </Typography>
-                                        <Typography variant="body2">
+                                    </Typography>
+                                    <Typography variant="body2">
                                         {perfMetrics?.max_perf_10day?.name}
-                                        </Typography>
-                                        <Typography variant="body2" style={perfMetrics?.max_perf_10day?.perf_10day && perfMetrics?.max_perf_10day?.perf_10day >=0?{color:'green'}:{ color:'red'}}>
+                                    </Typography>
+                                    <Typography variant="body2" style={perfMetrics?.max_perf_10day?.perf_10day && perfMetrics?.max_perf_10day?.perf_10day >= 0 ? { color: 'green' } : { color: 'red' }}>
                                         {perfMetrics?.max_perf_10day?.perf_10day.toFixed(4)}
-                                        </Typography>
-                                    </CardContent>
-                                    </Card>
-                                </Grid>
-                                <Grid item xs={6} className="perf_card_container">
-                                    <Card className="perf_card" >
-                                    <CardContent>
-                                        <Typography variant="h6" component="div">
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={6} className="perf_card_container">
+                            <Card className="perf_card" >
+                                <CardContent>
+                                    <Typography variant="h6" component="div">
                                         Worst Performer
-                                        </Typography>
-                                        <Typography variant="body2">
+                                    </Typography>
+                                    <Typography variant="body2">
                                         {perfMetrics?.min_perf_10day?.name}
-                                        </Typography>
-                                        <Typography variant="body2" style={perfMetrics?.min_perf_10day?.perf_10day && perfMetrics?.min_perf_10day?.perf_10day >=0?{color:'green'}:{ color:'red'}}>
+                                    </Typography>
+                                    <Typography variant="body2" style={perfMetrics?.min_perf_10day?.perf_10day && perfMetrics?.min_perf_10day?.perf_10day >= 0 ? { color: 'green' } : { color: 'red' }}>
                                         {perfMetrics?.min_perf_10day?.perf_10day.toFixed(4)}
-                                        </Typography>
-                                    </CardContent>
-                                    </Card>
-                                </Grid>
-                            </Grid>
+                                    </Typography>
+                                </CardContent>
+                            </Card>
                         </Grid>
-                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
 
-                        {/* Third Column */}
-                        <Grid item md={4} xs={12}>
-                        <Grid>
-                            <Grid>
-                            <Typography className="white" variant="h6" component="div">
-                            Overall Watchlist Performers <br/>30 days
-                                </Typography>
-                            </Grid>
-                            <Grid container spacing={2}>
-                                <Grid item xs={6} className="perf_card_container">
-                                    
-                                    <Card className="perf_card">
-                                    <CardContent>
-                                        <Typography variant="h6" component="div">
+            {/* Third Column */}
+            <Grid item md={4} xs={12}>
+                <Grid>
+                    <Grid>
+                        <Typography className="white" variant="h6" component="div">
+                            Overall Watchlist Performers <br />30 days
+                        </Typography>
+                    </Grid>
+                    <Grid container spacing={2}>
+                        <Grid item xs={6} className="perf_card_container">
+
+                            <Card className="perf_card">
+                                <CardContent>
+                                    <Typography variant="h6" component="div">
                                         Best Performer
-                                        </Typography>
-                                        <Typography variant="body2">
+                                    </Typography>
+                                    <Typography variant="body2">
                                         {perfMetrics?.max_perf_30day?.name}
-                                        </Typography>
-                                        <Typography variant="body2" style={perfMetrics?.max_perf_30day?.perf_30day && perfMetrics?.max_perf_30day?.perf_30day >=0?{color:'green'}:{ color:'red'}}>
+                                    </Typography>
+                                    <Typography variant="body2" style={perfMetrics?.max_perf_30day?.perf_30day && perfMetrics?.max_perf_30day?.perf_30day >= 0 ? { color: 'green' } : { color: 'red' }}>
                                         {perfMetrics?.max_perf_30day?.perf_30day.toFixed(4)}
-                                        </Typography>
-                                    </CardContent>
-                                    </Card>
-                                </Grid>
-                                <Grid item xs={6} className="perf_card_container">
-                                    <Card className="perf_card" >
-                                    <CardContent>
-                                        <Typography variant="h6" component="div">
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={6} className="perf_card_container">
+                            <Card className="perf_card" >
+                                <CardContent>
+                                    <Typography variant="h6" component="div">
                                         Worst Performer
-                                        </Typography>
-                                        <Typography variant="body2">
+                                    </Typography>
+                                    <Typography variant="body2">
                                         {perfMetrics?.min_perf_30day?.name}
-                                        </Typography>
-                                        <Typography variant="body2" style={perfMetrics?.min_perf_30day?.perf_30day && perfMetrics?.min_perf_30day?.perf_30day >=0?{color:'green'}:{ color:'red'}}>
+                                    </Typography>
+                                    <Typography variant="body2" style={perfMetrics?.min_perf_30day?.perf_30day && perfMetrics?.min_perf_30day?.perf_30day >= 0 ? { color: 'green' } : { color: 'red' }}>
                                         {perfMetrics?.min_perf_30day?.perf_30day.toFixed(4)}
-                                        </Typography>
-                                    </CardContent>
-                                    </Card>
-                                </Grid>
-                            </Grid>
+                                    </Typography>
+                                </CardContent>
+                            </Card>
                         </Grid>
-                        </Grid>
-                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
     );
 
     return maincontent;

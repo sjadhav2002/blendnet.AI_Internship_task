@@ -26,7 +26,7 @@ interface Company {
     [key: string]: any;
 }
 
-interface company_details{
+interface company_details {
     watchlist: string;
     name: string;
     symbol: string;
@@ -103,13 +103,13 @@ const Dashboard: React.FC = () => {
             .then((data) => {
 
                 setUsername(data["user"]);
-                if (data["watchlists"].length!==0){
-                setWatchlists(data["watchlists"]);
+                if (data["watchlists"].length !== 0) {
+                    setWatchlists(data["watchlists"]);
                 }
                 setWatchlistCompany(data["watchlist_companies"]);
                 setAllCompanies(data["allCompanies"]);
-                if(data['perf_metrics']){
-                setPerfMetrics(data['perf_metrics'])
+                if (data['perf_metrics']) {
+                    setPerfMetrics(data['perf_metrics'])
                 }
                 getcsrftoken();
             })
@@ -228,11 +228,11 @@ const Dashboard: React.FC = () => {
 
     const updatewatchlistcompanies = (event: ChangeEvent<HTMLInputElement>, company: Company_Data) => {
         var currentwatchlist = watchlistCompany[selectedWatchlistname]
-        if(!currentwatchlist){
+        if (!currentwatchlist) {
             currentwatchlist = [];
         }
         if (event.target.checked) {
-                currentwatchlist.push(company);
+            currentwatchlist.push(company);
         }
         else {
             currentwatchlist = currentwatchlist.filter((item) => item["symbol"] !== company.symbol);
@@ -268,7 +268,7 @@ const Dashboard: React.FC = () => {
             });
     }
 
-    const getWatchlistPerf =(id:number) =>{
+    const getWatchlistPerf = (id: number) => {
         fetch("http://127.0.0.1:8000/user/getWatchlistPerf/", {
             credentials: "include",
             method: "POST",
@@ -276,7 +276,7 @@ const Dashboard: React.FC = () => {
                 "Content-Type": "application/json",
                 "X-CSRFToken": csrfToken,
             },
-            body: JSON.stringify({'watchlist': id}),
+            body: JSON.stringify({ 'watchlist': id }),
         })
             .then((response) => {
                 if (!response.ok) {
@@ -285,7 +285,7 @@ const Dashboard: React.FC = () => {
                 return response.json();
             })
             .then((data) => {
-                if(data['perf_metrics']){
+                if (data['perf_metrics']) {
                     setSelectedWatchlistPerfMetrics(data['perf_metrics'])
                 }
             })
@@ -297,7 +297,7 @@ const Dashboard: React.FC = () => {
     const maincontent = (
         <div>
             {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign:'center' }}> Welcome {username}</Typography> */}
-            <Grid container style={{ height: "90vh"}}>
+            <Grid container style={{ height: "90vh" }}>
                 {!isMobile && (
                     <Grid item xs={2} className="side_nav">
                         <Typography
@@ -475,13 +475,13 @@ const Dashboard: React.FC = () => {
                                 </div>
                             ))}
                         </Grid>
-                        )}
-                        {selectedWatchlist === null &&(
-                        <Default_perf perfMetrics={perfMetrics?perfMetrics:null} />
-                        )}
-                        {selectedWatchlist !== null &&(
-                        <Watchlist_perf perfMetrics={selectedWatchlistPerfMetrics?selectedWatchlistPerfMetrics:null} watchlistname={selectedWatchlist} selectedCompany={selectedCompany} csrfToken={csrfToken}/>
-                        )}
+                    )}
+                    {selectedWatchlist === null && (
+                        <Default_perf perfMetrics={perfMetrics ? perfMetrics : null} />
+                    )}
+                    {selectedWatchlist !== null && (
+                        <Watchlist_perf perfMetrics={selectedWatchlistPerfMetrics ? selectedWatchlistPerfMetrics : null} watchlistname={selectedWatchlist} selectedCompany={selectedCompany} csrfToken={csrfToken} />
+                    )}
 
                 </Grid>
 

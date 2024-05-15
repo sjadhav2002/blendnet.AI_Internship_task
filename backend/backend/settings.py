@@ -105,7 +105,7 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
+DATABASES = {                       #to be set as environment variable to improve security
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'blendnet_db',

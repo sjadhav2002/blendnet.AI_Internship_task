@@ -16,7 +16,7 @@ interface Props {
     name: string;
 }
 
-class CandlestickChart extends React.Component<Props>  {
+class CandlestickChart extends React.Component<Props> {
     render() {
         const { data } = this.props;
         const { name } = this.props;

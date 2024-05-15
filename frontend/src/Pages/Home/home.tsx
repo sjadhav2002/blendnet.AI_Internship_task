@@ -9,7 +9,7 @@ const Home: React.FC = () => {
         <div>
             {/* Your main content */}
             <Typography variant="h6" component="div">
-                Instructions<br/>
+                Instructions<br />
                 <ol>
                     <li>Complete the setup as said in Readme.md</li>
                     <li>Please use "127.0.0.1:3000" in search bar "localhost:3000" <strong>does not work</strong></li>

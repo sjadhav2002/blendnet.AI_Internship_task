@@ -8,7 +8,7 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required
 
 
-API_KEY = ["demo","5GU3VABUR3RB1EDS"]
+API_KEY = ["demo","5GU3VABUR3RB1EDS"]                       #to be set as environment variable to improve security
 
 companies = [
     {
@@ -51,7 +51,7 @@ def dashboard(request):
         for item in user_watchlists:
             watchlist = item["name"]
             watchlist_id = item['id']
-            companies_list = WatchlistCompany.objects.filter(watchlist_id = watchlist_id).values()
+            companies_list = WatchlistCompany.objects.filter(watchlist_id = watchlist_id).values() #Get Companies in watchlist
             company_list =[]
             for company in companies_list:
                 comp_data = Company.objects.get(symbol = company['company_id'])
@@ -84,6 +84,7 @@ def dashboard(request):
         min_perf_10day = min(default_companies, key=lambda x: x['perf_10day'])
         max_perf_30day = max(default_companies, key=lambda x: x['perf_30day'])
         min_perf_30day = min(default_companies, key=lambda x: x['perf_30day'])
+        
         perf_metrics = {
         'max_perf_today':max_perf_today,
         'min_perf_today':min_perf_today,
@@ -109,7 +110,7 @@ def dashboard(request):
         'watchlist_companies':watchlist_companies,
         'allCompanies': companies,
         
-    }
+        }
     return JsonResponse(data)
 
 @login_required
@@ -235,7 +236,7 @@ def getCompanyGraph(request):
         response = requests.get(endpoint)
         data = response.json()
         time_data = data.get("Time Series (5min)")
-        if time_data ==None:
+        if time_data ==None:                                        #For companies that do not work on demo key
             endpoint =f"https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={company}&interval=5min&apikey={API_KEY[1]}"
             response = requests.get(endpoint)
             data = response.json()
@@ -325,8 +326,7 @@ def update_status():
         response = requests.get(endpoint)
         data = response.json()
         time_data = data.get("Time Series (5min)")
-        if time_data == None:
-            # continue
+        if time_data == None:                                        #For companies that do not work on demo key
             endpoint =f"https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={company['symbol']}&interval=5min&apikey={API_KEY[1]}"
             response = requests.get(endpoint)
             data = response.json()

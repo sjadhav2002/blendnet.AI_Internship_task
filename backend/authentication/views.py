@@ -59,7 +59,6 @@ def signup(request):
         email = data.get('email')
         if not (username and password and first_name and last_name):  # Ensure all fields are provided
             return JsonResponse({'error': 'All fields are required.'}, status=400)
-        #username/password checking
         try:
             user = User.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name, email = email)
             return JsonResponse({'status': 'success'}, status=201)

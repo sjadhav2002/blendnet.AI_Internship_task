@@ -244,8 +244,8 @@ function Signup() {
                   PasswordMatch === "empty"
                     ? { border: "none" }
                     : PasswordMatch
-                    ? { boxShadow: "0px 0px 5px 2px green" }
-                    : { boxShadow: "0px 0px 5px 2px red" }
+                      ? { boxShadow: "0px 0px 5px 2px green" }
+                      : { boxShadow: "0px 0px 5px 2px red" }
                 }
               />
             </Grid>
