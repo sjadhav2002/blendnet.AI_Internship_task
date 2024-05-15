@@ -31,14 +31,12 @@ interface DefaultPerfProps {
 const Default_perf: React.FC<DefaultPerfProps> = ({perfMetrics}) => {
     const maincontent: React.ReactNode = (
         <Grid container spacing={2} style={{textAlign:'center'}}>
-                        {/* First Column */}
-                        
-                            
+                        {/* First Column */}                            
                         <Grid item md={4} xs={12}>
                         <Grid>
                             <Grid>
                                 <Typography className="white" variant="h6" component="div">
-                                            Today
+                                            Overall Watchlist Performers <br/>Today
                                 </Typography>
                             </Grid>
                             <Grid container spacing={2}>
@@ -82,7 +80,7 @@ const Default_perf: React.FC<DefaultPerfProps> = ({perfMetrics}) => {
                         <Grid>
                             <Grid>
                             <Typography className="white" variant="h6" component="div">
-                                        10 days
+                            Overall Watchlist Performers <br/>10 days
                                 </Typography>
                             </Grid>
                             <Grid container spacing={2}>
@@ -126,7 +124,7 @@ const Default_perf: React.FC<DefaultPerfProps> = ({perfMetrics}) => {
                         <Grid>
                             <Grid>
                             <Typography className="white" variant="h6" component="div">
-                                        30 days
+                            Overall Watchlist Performers <br/>30 days
                                 </Typography>
                             </Grid>
                             <Grid container spacing={2}>
